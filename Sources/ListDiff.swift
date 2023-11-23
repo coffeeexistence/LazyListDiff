@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 struct Stack<Element> {
     var items = [Element]()
@@ -18,7 +19,7 @@ public protocol Diffable {
 }
 
 /// https://github.com/Instagram/IGListKit/blob/master/Source/IGListDiff.mm
-public enum List {
+public enum DiffableList {
     /// Used to track data stats while diffing.
     /// We expect to keep a reference of entry, thus its declaration as (final) class.
     final class Entry {
@@ -55,14 +56,19 @@ public enum List {
     }
     
     public struct MoveIndex : Equatable {
-        public let from: Int
-        public let to: Int
+        public private(set) var from: Int
+        public private(set) var to: Int
         
         public init(from: Int, to: Int) {
             self.from = from
             self.to = to
         }
         
+        mutating public func setOffset(_ offset: Int) {
+            self.from += offset
+            self.to += offset
+        }
+                
         public static func ==(lhs: MoveIndex, rhs: MoveIndex) -> Bool {
             return lhs.from == rhs.from && lhs.to == rhs.to
         }
@@ -80,6 +86,17 @@ public enum List {
         }
         public var changeCount: Int {
             return self.inserts.count + self.deletes.count + self.updates.count + self.moves.count
+        }
+        // https://github.com/Instagram/IGListKit/issues/297
+        // ListDiff.forBatchUpdates() converts updates into delete+insert to get around some
+        // UICollectionView consistency issues, but that's only an issue when positions are shifting.
+        // If there are only updates (eg: bulk favorite), then allow updates.
+        var onlyContainsUpdates: Bool {
+            let hasNoOtherChanges = inserts.isEmpty && deletes.isEmpty && moves.isEmpty
+            return !updates.isEmpty && hasNoOtherChanges
+        }
+        public var delta: Int {
+            inserts.count - deletes.count
         }
         public func validate(_ oldArray: Array<Diffable>, _ newArray: Array<Diffable>) -> Bool {
             return (oldArray.count + self.inserts.count - self.deletes.count) == newArray.count
@@ -206,11 +223,29 @@ public enum List {
     }
 }
 
-public extension List.Result {
-    func forBatchUpdates() -> List.Result {
+public extension DiffableList.Result {
+    func forBatchUpdates() -> DiffableList.Result {
         var result = self
         result.mutatingForBatchUpdates()
         return result
+    }
+    
+    func adjustingOffset(by offset: Int) -> DiffableList.Result {
+        var result = self
+        result.adjustOffset(by: offset)
+        return result
+    }
+    
+    // Warning, this doesn't update oldMap or newMap at the moment, so oldIndexFor()/newIndexFor()
+    // will return non-adjusted indices. This is fine since we don't use those at the moment, but
+    // if we need to use them in the future then we'll need to adjust oldMap & newMap in this func.
+    mutating func adjustOffset(by offset: Int) {
+        inserts = IndexSet(inserts.map { $0 + offset })
+        deletes = IndexSet(deletes.map { $0 + offset })
+        updates = IndexSet(updates.map { $0 + offset })
+        for (i, _) in moves.enumerated() {
+            moves[i].setOffset(offset)
+        }
     }
     
     private mutating func mutatingForBatchUpdates() {
@@ -235,3 +270,56 @@ public extension List.Result {
     }
 }
 
+
+extension DiffableList.Result {
+    public var debugChangeSummary: String {
+        """
+        inserts: \(inserts.map { $0 })
+        updates: \(updates.map { $0 })
+        deletes: \(deletes.map { $0 })
+        moves: \(moves.map { $0 })
+        hasChanges: \(hasChanges)
+        changeCount: \(changeCount)
+        """
+    }
+}
+
+extension IndexSet {
+    func toIndexPaths(section: Int = 0) -> [IndexPath] {
+        map { IndexPath(item: $0, section: section) }
+    }
+}
+
+extension UICollectionView {
+    func performBatchUpdates(diff: DiffableList.Result) {
+        guard diff.hasChanges else {
+            return
+        }
+        
+        performBatchUpdates({
+            // Deletes
+            if !diff.deletes.isEmpty {
+                let deletes = diff.deletes.toIndexPaths()
+                self.deleteItems(at: deletes)
+            }
+
+            // Inserts
+            if !diff.inserts.isEmpty {
+                let inserts = diff.inserts.toIndexPaths()
+                self.insertItems(at: inserts)
+            }
+
+            // Moves
+            for move in diff.moves {
+                let moveAt = IndexPath(item: move.from, section: 0)
+                let moveTo = IndexPath(item: move.to, section: 0)
+                self.moveItem(at: moveAt, to: moveTo)
+            }
+            
+            if !diff.updates.isEmpty {
+                let updates = diff.updates.map { IndexPath(item: $0, section: 0) }
+                self.reloadItems(at: updates)
+            }
+        }, completion: nil)
+    }
+}

@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28E4D5232B0EC96F00886639 /* LazyDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E4D5222B0EC96F00886639 /* LazyDiff.swift */; };
+		28E4D5252B0EC9B500886639 /* ListChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E4D5242B0EC9B500886639 /* ListChange.swift */; };
+		28E4D5272B0ECAB000886639 /* LazyDiffCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E4D5262B0ECAB000886639 /* LazyDiffCollectionDataSource.swift */; };
+		28E4D5292B0ECB6100886639 /* LazyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E4D5282B0ECB6100886639 /* LazyCollectionCell.swift */; };
+		28E4D52B2B0ED04100886639 /* TODO+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E4D52A2B0ED04100886639 /* TODO+Selection.swift */; };
+		28E4D52F2B0ED1B900886639 /* LazyDiffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E4D52D2B0ED1A300886639 /* LazyDiffTests.swift */; };
 		A6FD5D4C1F8B710A006A2CDC /* ListDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FD5D421F8B710A006A2CDC /* ListDiff.framework */; };
 		A6FD5D511F8B710A006A2CDC /* ListDiffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FD5D501F8B710A006A2CDC /* ListDiffTests.swift */; };
 		A6FD5D531F8B710A006A2CDC /* ListDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FD5D451F8B710A006A2CDC /* ListDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,6 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28E4D5222B0EC96F00886639 /* LazyDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyDiff.swift; sourceTree = "<group>"; };
+		28E4D5242B0EC9B500886639 /* ListChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListChange.swift; sourceTree = "<group>"; };
+		28E4D5262B0ECAB000886639 /* LazyDiffCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyDiffCollectionDataSource.swift; sourceTree = "<group>"; };
+		28E4D5282B0ECB6100886639 /* LazyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyCollectionCell.swift; sourceTree = "<group>"; };
+		28E4D52A2B0ED04100886639 /* TODO+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TODO+Selection.swift"; sourceTree = "<group>"; };
+		28E4D52D2B0ED1A300886639 /* LazyDiffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyDiffTests.swift; sourceTree = "<group>"; };
 		A6FD5D421F8B710A006A2CDC /* ListDiff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListDiff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6FD5D451F8B710A006A2CDC /* ListDiff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDiff.h; sourceTree = "<group>"; };
 		A6FD5D461F8B710A006A2CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28E4D52C2B0ED19100886639 /* LazyDiffTests */ = {
+			isa = PBXGroup;
+			children = (
+				28E4D52D2B0ED1A300886639 /* LazyDiffTests.swift */,
+			);
+			path = LazyDiffTests;
+			sourceTree = "<group>";
+		};
 		A6FD5D381F8B7109006A2CDC = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +121,7 @@
 		A6FD5D4F1F8B710A006A2CDC /* ListDiffTests */ = {
 			isa = PBXGroup;
 			children = (
+				28E4D52C2B0ED19100886639 /* LazyDiffTests */,
 				A6FD5D501F8B710A006A2CDC /* ListDiffTests.swift */,
 				CCA06442212EB81100CAB660 /* ListDiffStressTests */,
 				A6FD5D521F8B710A006A2CDC /* Info.plist */,
@@ -114,6 +135,11 @@
 			isa = PBXGroup;
 			children = (
 				A6FD5D5D1F8B71C1006A2CDC /* ListDiff.swift */,
+				28E4D5222B0EC96F00886639 /* LazyDiff.swift */,
+				28E4D5242B0EC9B500886639 /* ListChange.swift */,
+				28E4D5262B0ECAB000886639 /* LazyDiffCollectionDataSource.swift */,
+				28E4D5282B0ECB6100886639 /* LazyCollectionCell.swift */,
+				28E4D52A2B0ED04100886639 /* TODO+Selection.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -206,18 +232,19 @@
 		A6FD5D391F8B7109006A2CDC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = ListDiff;
 				TargetAttributes = {
 					A6FD5D411F8B7109006A2CDC = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					A6FD5D4A1F8B710A006A2CDC = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -262,7 +289,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E4D5232B0EC96F00886639 /* LazyDiff.swift in Sources */,
+				28E4D5272B0ECAB000886639 /* LazyDiffCollectionDataSource.swift in Sources */,
+				28E4D5292B0ECB6100886639 /* LazyCollectionCell.swift in Sources */,
 				A6FD5D5E1F8B71C1006A2CDC /* ListDiff.swift in Sources */,
+				28E4D52B2B0ED04100886639 /* TODO+Selection.swift in Sources */,
+				28E4D5252B0EC9B500886639 /* ListChange.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E4D52F2B0ED1B900886639 /* LazyDiffTests.swift in Sources */,
 				CCA06441212EB7F500CAB660 /* ListDiffStressTests.swift in Sources */,
 				CCA06447212EC12400CAB660 /* ObjCExceptionCatcher.swift in Sources */,
 				CCA06450212EC3FA00CAB660 /* CollectionViewUpdater.swift in Sources */,
@@ -307,6 +340,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -314,8 +348,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -342,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -367,6 +403,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -374,8 +411,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -396,10 +435,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -416,15 +456,22 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = ListDiff/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.lxcid.ListDiff;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -439,14 +486,21 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = ListDiff/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.lxcid.ListDiff;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -458,12 +512,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tests/ListDiffTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.lxcid.ListDiffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/ListDiffTests/ListDiffTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -475,11 +534,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tests/ListDiffTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.lxcid.ListDiffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/ListDiffTests/ListDiffTests-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

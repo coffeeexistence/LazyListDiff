@@ -22,7 +22,7 @@ final class CollectionViewUpdater: NSObject, UICollectionViewDataSource {
     {
         let collectionView = makeAndReloadCollectionViewWith(cellData: from)
         
-        let diff = List.diffing(
+        let diff = DiffableList.diffing(
             oldArray: from,
             newArray: to
         ).forBatchUpdates() // If you remove `forBatchUpdates`, `ListDiffStressTests` will start to fail
@@ -73,7 +73,7 @@ final class CollectionViewUpdater: NSObject, UICollectionViewDataSource {
     private func performBatchUpdates(
         of collectionView: UICollectionView,
         cellDataList: [CellData],
-        diff: List.Result,
+        diff: DiffableList.Result,
         completion: @escaping (CollectionViewUpdaterResult) -> ())
     {
         var caughtException: NSException?
@@ -116,8 +116,8 @@ final class CollectionViewUpdater: NSObject, UICollectionViewDataSource {
     private func tryPerformingBatchUpdates(
         of collectionView: UICollectionView,
         cellDataList: [CellData],
-        diff: List.Result)
-    {
+        diff: DiffableList.Result
+    ) {
         collectionView.performBatchUpdates(
             _: {
                 self.cellData = cellDataList
